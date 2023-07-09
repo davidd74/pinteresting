@@ -1,0 +1,11 @@
+textarea {
+    display: flex;
+    align-items: center;
+  }
+
+
+  @media (min-width: 1024px) {
+    .post-details-height {
+      max-height: 850px;
+    }
+  }

@@ -49,12 +49,12 @@ const Navbar = () => {
         </div>
       </div>
       <div>
-        <Link to="/CreatePost">
+        <Link to="/createpost">
           <AiOutlinePlusCircle className="cursor-pointer xs:text-3xl lg:text-4xl" />
         </Link>
       </div>
       <div className="cursor-pointer xs:w-14 md:w-12">
-        <Link to={`/UserProfile/${user?.sub}`}>
+        <Link to={`/userprofile/${user?.sub}`}>
           <img src={user?.picture} alt="user-pfp" className="rounded-full" />
           {console.log(user?.picture)}
         </Link>

@@ -23,15 +23,15 @@ function App() {
 
   return (
     <>
-      <div className="mx-auto xs:px-3 sm:px-15 md:px-20">
+      <div className="px-12 mx-auto lg:px-4 max-w-screen-2xl">
         {!excludedRoutes.includes(location.pathname) && <Navbar />}
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/search/:query" element={<SearchResult />} />
-          <Route path="/CreatePost" element={<CreatePost />} />
-          <Route path="/UserProfile/:userId" element={<UserProfile />} />
-          <Route path="/PostDetails/:postId" element={<PostDetails />} />
+          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/userprofile/:userId" element={<UserProfile />} />
+          <Route path="/postdetails/:postId" element={<PostDetails />} />
         </Routes>
       </div>
     </>

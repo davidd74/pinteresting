@@ -165,7 +165,7 @@ const PostDetails = () => {
               {post.title}
             </h2>
             <Link
-              to={`/UserProfile/${post.authorId}`}
+              to={`/userprofile/${post.authorId}`}
               className="flex items-center gap-2"
             >
               <img
@@ -186,7 +186,7 @@ const PostDetails = () => {
                   post.comments.map((comment) => (
                     <div key={uuidv4()} className="mb-5 max-h-64">
                       <div className="flex items-start space-x-3">
-                        <Link to={`/UserProfile/${comment.commenterId}`}>
+                        <Link to={`/userprofile/${comment.commenterId}`}>
                           <img
                             src={comment.commenterImage}
                             alt="Author"

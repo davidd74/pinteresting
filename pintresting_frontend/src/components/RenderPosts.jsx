@@ -34,14 +34,14 @@ export const RenderPosts = ({ posts }) => {
   return (
     <div>
       {imagesLoaded ? (
-        <Masonry columns={{ xs: 2, sm: 3, lg: 4, xl: 6 }} spacing={2.5}>
+        <Masonry columns={{ xs: 2, sm: 3, lg: 5 }} spacing={1.5}>
           {posts.map((post, i) => (
             <div key={i} className="relative group">
-              <Link to={`/PostDetails/${post._id}`}>
+              <Link to={`/postdetails/${post._id}`}>
                 <img
                   src={builder.image(post.image).url()}
                   alt="Image"
-                  className="rounded-xl"
+                  className="rounded-lg"
                 />
               </Link>
               <div className="absolute top-0 right-0 hidden group-hover:block">

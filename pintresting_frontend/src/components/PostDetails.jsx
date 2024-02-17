@@ -121,7 +121,7 @@ const PostDetails = () => {
 
   return (
     <div className="pb-6">
-      <div className="justify-center mx-auto mt-16 mb-12 px-15 shadow-bnb xs:max-w-md xs:block xs:rounded-t-2xl xs:rounded-b-2xl md:max-w-xl md:max-w-lg lg:max-w-6xl lg:flex lg:rounded-2xl post-details-height">
+      <div className="justify-center mx-auto mt-16 mb-12 px-15 shadow-bnb xs:max-w-md xs:block xs:rounded-t-2xl xs:rounded-b-2xl md:max-w-xl lg:max-w-6xl lg:flex lg:rounded-2xl post-details-height">
         <img
           ref={imgRef}
           className="object-cover xs:rounded-t-3xl lg:rounded-l-2xl lg:rounded-r-none xs:w-full lg:w-1/2"

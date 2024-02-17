@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { client } from "../client";
 client;
 
@@ -17,7 +17,7 @@ const SaveButton = ({ postId, userId }) => {
         { postId }
       )
       .then((res) => {
-        if ( 
+        if (
           res &&
           res.savedBy &&
           res.savedBy.some((user) => user._id === userId)
@@ -64,10 +64,7 @@ const SaveButton = ({ postId, userId }) => {
 
   return (
     <button
-      className="bg-cta-500 hover:bg-cta-700
-              text-white
-              rounded rounded-2xl
-              m-3 px-5 py-2 font-semibold"
+      className="px-5 py-2 m-3 font-semibold text-white bg-cta-500 hover:bg-cta-700 rounded-2xl"
       onClick={handleSave}
     >
       {isSaved ? "Saved" : "Save"}

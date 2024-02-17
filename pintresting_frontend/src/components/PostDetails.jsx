@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { client } from "../client";
 import urlBuilder from "@sanity/image-url";
@@ -52,7 +52,7 @@ const PostDetails = () => {
           setIsAuthor(true);
         }
       });
-  }, [postId]);
+  }, [postId, user.sub]);
 
   useEffect(() => {
     function calculateMaxHeight() {
@@ -71,9 +71,9 @@ const PostDetails = () => {
 
   if (!post)
     return (
-      <div className="flex flex-col justify-center items-center mt-72 align-center">
+      <div className="flex flex-col items-center justify-center mt-72 align-center">
         <HashLoader color={"#E60023"} size={50} />
-        <p className="mt-8 font-semibold ml-4">Loading pictures for you...</p>
+        <p className="ml-4 font-semibold ">Loading pictures for you...</p>
       </div>
     );
 
@@ -113,7 +113,7 @@ const PostDetails = () => {
 
   // deleting post
   const handleDelete = () => {
-    client.delete(post._id).then((res) => {
+    client.delete(post._id).then(() => {
       console.log("Post deleted!");
       navigate("/");
     });
@@ -121,36 +121,20 @@ const PostDetails = () => {
 
   return (
     <div className="pb-6">
-      <div
-        className="mx-auto mt-16 mb-12 px-15 shadow-bnb
-      xs:max-w-md xs:block xs:rounded-t-2xl xs:rounded-b-2xl
-      md:max-w-xl md:max-w-lg
-      lg:max-w-6xl lg:flex lg:rounded-2xl justify-center post-details-height"
-      >
+      <div className="justify-center mx-auto mt-16 mb-12 px-15 shadow-bnb xs:max-w-md xs:block xs:rounded-t-2xl xs:rounded-b-2xl md:max-w-xl md:max-w-lg lg:max-w-6xl lg:flex lg:rounded-2xl post-details-height">
         <img
           ref={imgRef}
-          className="
-        xs:rounded-t-3xl
-        lg:rounded-l-2xl
-        lg:rounded-r-none
-      xs:w-full lg:w-1/2
-      object-cover"
+          className="object-cover xs:rounded-t-3xl lg:rounded-l-2xl lg:rounded-r-none xs:w-full lg:w-1/2"
           src={imageUrl}
           alt="Posted-image"
         />
-        <div
-          className="xs:px-4 md:px-8 py-10 bg-white xs:w-auto lg:w-1/2 
-      xs:rounded-b-2xl
-      lg:rounded-b-none
-      lg:rounded-tr-2xl lg:rounded-br-2xl
-       flex flex-col justify-between"
-        >
+        <div className="flex flex-col justify-between py-10 bg-white xs:px-4 md:px-8 xs:w-auto lg:w-1/2 xs:rounded-b-2xl lg:rounded-b-none lg:rounded-tr-2xl lg:rounded-br-2xl">
           <div className="flex flex-col gap-4">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <div className="flex gap-2">
                 <a
                   href={`${imageUrl}?dl=`}
-                  className="hover:bg-gray-100 rounded-full p-2"
+                  className="p-2 rounded-full hover:bg-gray-100"
                   download
                 >
                   <FiDownload fontSize={24} />
@@ -158,9 +142,9 @@ const PostDetails = () => {
 
                 <button
                   type="button"
-                  className="hover:bg-gray-100 rounded-full p-2"
+                  className="p-2 rounded-full hover:bg-gray-100"
                   onClick={() => {
-                    sharePost(postId)
+                    sharePost(postId);
                   }}
                 >
                   <FiShare2 fontSize={24} />
@@ -168,7 +152,7 @@ const PostDetails = () => {
 
                 {isAuthor && (
                   <button
-                    className="hover:bg-gray-100 rounded-full p-2"
+                    className="p-2 rounded-full hover:bg-gray-100"
                     onClick={handleDelete}
                   >
                     <RiDeleteBin6Line fontSize={24} />
@@ -177,7 +161,7 @@ const PostDetails = () => {
               </div>
               <SaveButton postId={postId} userId={user.sub} />
             </div>
-            <h2 className="xs:text-xl lg:text-2xl font-semibold mt-4">
+            <h2 className="mt-4 font-semibold xs:text-xl lg:text-2xl">
               {post.title}
             </h2>
             <Link
@@ -186,30 +170,30 @@ const PostDetails = () => {
             >
               <img
                 src={post.authorImage}
-                className="w-11 rounded-full"
+                className="rounded-full w-11"
                 alt="user-profile-pic"
               />
               <p className="font-medium ">{post.authorName}</p>
             </Link>
 
             <div className="xs:mt-2 lg:mt-16">
-              <h2 className="xs:text-xl lg:text-2xl font-semibold">Comments</h2>
+              <h2 className="font-semibold xs:text-xl lg:text-2xl">Comments</h2>
               <div
                 style={{ maxHeight: `${maxContainerHeight / 2.65}px` }}
                 className="mt-6 overflow-y-auto"
               >
                 {post.comments ? (
                   post.comments.map((comment) => (
-                    <div key={uuidv4()} className="max-h-64 mb-5">
+                    <div key={uuidv4()} className="mb-5 max-h-64">
                       <div className="flex items-start space-x-3">
                         <Link to={`/UserProfile/${comment.commenterId}`}>
                           <img
                             src={comment.commenterImage}
                             alt="Author"
-                            className="w-11 h-11 rounded-full my-3"
+                            className="my-3 rounded-full w-11 h-11"
                           />
                         </Link>
-                        <div className="flex-grow bg-slate-50 rounded-3xl px-5 py-3">
+                        <div className="flex-grow px-5 py-3 bg-slate-50 rounded-3xl">
                           <h4 className="font-bold">{comment.commenterName}</h4>
                           <p className="mt-1">{comment.commentText}</p>
                         </div>
@@ -217,18 +201,13 @@ const PostDetails = () => {
                     </div>
                   ))
                 ) : (
-                  <p
-                    className="
-                text-gray-500"
-                  >
-                    No one commented yet!
-                  </p>
+                  <p className="text-gray-500 ">No one commented yet!</p>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 justify-center comment-details">
+          <div className="flex flex-col justify-center gap-6 comment-details">
             <div
               className="
           xs:mt-2 md:mt-
@@ -239,14 +218,14 @@ const PostDetails = () => {
               <img
                 src={user.picture}
                 alt="user-profile-pic"
-                className="w-11 h-11 rounded-full"
+                className="rounded-full w-11 h-11"
               />
               <form
                 onSubmit={handleSubmit}
-                className="flex justify-between items-center border border-gray-300 rounded-2xl py-2 px-2 w-full"
+                className="flex items-center justify-between w-full px-2 py-2 border border-gray-300 rounded-2xl"
               >
                 <textarea
-                  className="resize-none w-full mr-4 outline-none"
+                  className="w-full mr-4 outline-none resize-none"
                   placeholder="Enter comment here"
                   rows={1}
                   value={textAreaValue}
@@ -258,19 +237,19 @@ const PostDetails = () => {
                 <button
                   disabled={formError !== ""}
                   type="submit"
-                  className="rounded-full mr-3 p-2 bg-cta-500 hover:bg-cta-700"
+                  className="p-2 mr-3 rounded-full bg-cta-500 hover:bg-cta-700"
                 >
                   <BsFillSendFill color="white" fontSize={18} />
                 </button>
               </form>
             </div>
-            {formError && <p className="text-red-500 ml-2">{formError}</p>}
+            {formError && <p className="ml-2 text-red-500">{formError}</p>}
           </div>
         </div>
       </div>
       <div className="mt-16">
-        <h1 className="font-semibold text-2xl text-center">You might like</h1>
-        <div className="mt-8">
+        <h1 className="text-2xl font-semibold text-center">You might like</h1>
+        <div className="mt-4">
           <SimilarPosts postId={postId} postTitle={post.title} />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.png";
@@ -27,38 +27,36 @@ const Navbar = () => {
   };
 
   return (
-    // mx-auto xs:px-3 sm:px-15 md:px-20 py-8
-    // shadow-sm rounded-full
-
     <nav className="flex items-center justify-between mt-6 rounded-full xs:bg-white xs:gap-5 xl:gap-10 xs:p-3 md:p-4 md:px-8">
       <div className="w-12 cursor-pointer">
         <Link to="/">
           <img src={logo} alt="logo-img" />
         </Link>
       </div>
-      <div className="w-full relative">
+      <div className="relative w-full">
         <input
           type="text"
           placeholder="Search"
-          className="w-full bg-slate-100 rounded-3xl pl-14 pr-4 xs:py-2 md:py-3"
+          className="w-full pr-4 bg-slate-100 rounded-3xl pl-14 xs:py-2 md:py-3"
           value={searchValue}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
         />
         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
           <span onClick={handleSearchSubmit}>
-            <GoSearch className="xs:text-xl lg:text-2xl cursor-pointer" />
+            <GoSearch className="cursor-pointer xs:text-xl lg:text-2xl" />
           </span>
         </div>
       </div>
       <div>
         <Link to="/CreatePost">
-          <AiOutlinePlusCircle className="xs:text-3xl lg:text-4xl cursor-pointer" />
+          <AiOutlinePlusCircle className="cursor-pointer xs:text-3xl lg:text-4xl" />
         </Link>
       </div>
-      <div className="xs:w-14 md:w-12 cursor-pointer">
+      <div className="cursor-pointer xs:w-14 md:w-12">
         <Link to={`/UserProfile/${user?.sub}`}>
           <img src={user?.picture} alt="user-pfp" className="rounded-full" />
+          {console.log(user?.picture)}
         </Link>
       </div>
     </nav>

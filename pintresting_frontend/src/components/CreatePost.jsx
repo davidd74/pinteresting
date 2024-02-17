@@ -11,7 +11,6 @@ const CreatePost = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [title, setTitle] = useState(null);
   const [titleError, setTitleError] = useState("");
-  const [imageError, setImageError] = useState("");
   const [postUploading, setPostUploading] = useState(false);
   const [imageUploading, setImageUploading] = useState(false);
   const navigate = useNavigate();
@@ -50,7 +49,7 @@ const CreatePost = () => {
     let isValid = true;
 
     if (title.trim() === "" || title.length > 65) {
-      setTitleError("Title must be between 1 and 65 characters.");
+      setTitleError("Title length must be between 1 and 65 characters.");
       isValid = false;
     } else {
       setTitleError("");
@@ -176,7 +175,7 @@ const CreatePost = () => {
               <button
                 type="submit"
                 className="
-        bg-cta-500 hover:bg-cta-700 rounded-xl mt-6 py-2 px-7 text-sm text-white font-semibold"
+        bg-cta-500 hover:bg-cta-700 rounded-xl mt-6 py-3 px-12 text-white font-semibold"
               >
                 Post
               </button>

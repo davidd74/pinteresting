@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { client } from "../client";
 import { getUser } from "../utils/getUser";
 import { RenderPosts } from "./RenderPosts";
@@ -45,7 +45,7 @@ function UserProfile() {
     client.fetch(savedPostsQuery, { userId }).then((data) => {
       setSavedPosts(data);
     });
-  }, [savedPosts]);
+  }, []);
 
   function handleButtonClick(value) {
     setShowCreated(value);
@@ -61,11 +61,14 @@ function UserProfile() {
       <div className="flex flex-col justify-center items-center">
         {/* userprofile */}
         <div className="flex flex-col justify-center items-center gap-4">
-          <img
-            src={userImage}
-            className="w-24 rounded-full"
-            alt="profile picture"
-          />
+          {userImage && (
+            <img
+              src={userImage}
+              className="w-24 rounded-full"
+              alt="profile picture"
+            />
+          )}
+
           <h1 className="text-2xl font-semibold">{userName}</h1>
         </div>
 
@@ -90,7 +93,7 @@ function UserProfile() {
           {userId === user?.sub && (
             <div className="flex justify-end mr-6">
               <button
-                className="text-white bg-cta-500 py-1 px-4 rounded-xl hover:bg-cta-700"
+                className="text-white bg-cta-500 py-2 px-8 rounded-xl hover:bg-cta-700"
                 onClick={handleLogout}
               >
                 Logout

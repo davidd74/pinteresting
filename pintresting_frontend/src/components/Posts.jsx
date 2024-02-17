@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { client } from "../client";
 import HashLoader from "react-spinners/HashLoader";
 import { RenderPosts } from "./RenderPosts";
@@ -18,8 +18,7 @@ const Posts = () => {
   useEffect(() => {
     client.fetch(query).then(setPosts);
     setLoading(false);
-  }, [posts]);
-
+  }, []);
 
   return (
     <>

@@ -25,7 +25,7 @@ const SaveButton = ({ postId, userId }) => {
           setIsSaved(true);
         }
       });
-  }, [postId, userId]);
+  }, []);
 
   const handleSave = () => {
     if (isSaved) {

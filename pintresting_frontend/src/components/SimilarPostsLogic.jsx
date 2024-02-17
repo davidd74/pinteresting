@@ -6,7 +6,6 @@ import { RenderPosts } from "./RenderPosts";
 const SimilarPosts = (props) => {
   const [similarPosts, setSimilarPosts] = useState(null);
 
-
   const postId = props.postId;
   const postTitle = props.postTitle;
   console.log(postId, postTitle);

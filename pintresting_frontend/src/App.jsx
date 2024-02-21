@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div className="px-12 mx-auto lg:px-4 max-w-screen-2xl">
+      <div className="px-4 mx-auto md:px-12 lg:px-4 max-w-screen-2xl">
         {!excludedRoutes.includes(location.pathname) && <Navbar />}
         <Routes>
           <Route path="login" element={<Login />} />
